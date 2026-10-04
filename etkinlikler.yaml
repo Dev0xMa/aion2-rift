@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────────────────
+# Aion 2 bildirim listesi
+#
+# Yeni bir hatırlatma eklemek için aşağıya bir etkinlik bloğu ekle.
+# Kaydet + commit et, başka hiçbir şeye dokunmana gerek yok.
+#
+# Alanlar:
+#   ad          : Kısa isim (sadece loglarda görünür)
+#   aktif       : false yaparsan bildirim gitmez
+#   saatler     : Türkiye saatiyle etkinlik saatleri ("HH:MM")
+#   gunler      : (isteğe bağlı) sadece bu günlerde: pzt sal car per cum cmt paz
+#   sure_dk     : (isteğe bağlı) etkinlik kaç dk sürüyor, {bitis} için
+#   rol         : (isteğe bağlı) etiketlenecek rol. Secret adı ya da direkt ID.
+#   bildirimler : Etkinliğe göre dakika farkı (-10 = 10 dk önce, 5 = 5 dk sonra)
+#     renk      : Kartın rengi (#RRGGBB)
+#     baslik    : Büyük başlık
+#     aciklama  : Kart metni. {saat} = etkinlik saati, {bitis} = bitiş saati
+# ─────────────────────────────────────────────────────────────
+
+etkinlikler:
+
+  - ad: rift
+    aktif: true
+    saatler: ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"]
+    sure_dk: 10
+    rol: DISCORD_ROLE_ID
+    bildirimler:
+      - fark: -10
+        renk: "#F1C40F"
+        baslik: "⏳ RIFT 10 DAKİKA SONRA AÇILIYOR"
+        aciklama: "Hazırlanın, portal **{saat}**'te açılacak."
+      - fark: -5
+        renk: "#E67E22"
+        baslik: "⚠️ RIFT 5 DAKİKA SONRA AÇILIYOR"
+        aciklama: "Portal **{saat}**'te açılıyor. Karakterinizi hazırlayın!"
+      - fark: 0
+        renk: "#2ECC71"
+        baslik: "🌀 RIFT AÇILDI! GİRİŞE SON 10 DAKİKA"
+        aciklama: "Portal açık, giriş **{bitis}**'te kapanıyor. Hemen girin!"
+      - fark: 5
+        renk: "#E74C3C"
+        baslik: "🚨 RIFT GİRİŞİ 5 DAKİKA SONRA KAPANIYOR"
+        aciklama: "Son şans! Giriş **{bitis}**'te kapanıyor."
+
+  # ── Örnek: haftalık sıfırlama hatırlatması (aktif: true yapınca çalışır) ──
+  - ad: haftalik-sifirlama
+    aktif: false
+    saatler: ["20:00"]
+    gunler: [sal]
+    rol: DISCORD_ROLE_ID
+    bildirimler:
+      - fark: 0
+        renk: "#9B59B6"
+        baslik: "📅 HAFTALIK İŞLERİ BİTİRDİN Mİ?"
+        aciklama: "Yarın sabah haftalık sıfırlama var. Dungeon, Ascension Trial ve Abyss Point limitlerini kontrol et."

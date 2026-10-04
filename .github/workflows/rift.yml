@@ -1,29 +1,29 @@
-name: Aion 2 Rift Uyarici
+name: Aion 2 Bildirim Botu
 
 on:
-  # Zamanlama cron-job.org'dan geliyor: TR 23,02,05,...,20 saatlerinde :35'te
-  # bu workflow'u API ile tetikler. Is bildirimleri (R-10, R-5, R, R+5)
-  # tam saatinde kendisi atar.
+  # cron-job.org her 5 dakikada bir bu workflow'u API ile tetikler.
+  # Hangi bildirimin ne zaman gidecegi etkinlikler.yaml dosyasinda.
   workflow_dispatch:
     inputs:
       test:
-        description: "4 bildirimin hepsini simdi test olarak gonder"
+        description: "Her aktif etkinlikten bir test mesaji gonder"
         type: boolean
         default: true
 
-concurrency:
-  group: rift
-  cancel-in-progress: false
+permissions:
+  actions: read
+  contents: read
 
 jobs:
-  uyari:
+  bildirim:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Rift bildirimleri
+      - run: pip install --quiet pyyaml
+      - name: Bildirimleri gonder
         env:
-          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
-          ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}
+          SECRETS_JSON: ${{ toJSON(secrets) }}
+          GITHUB_TOKEN: ${{ github.token }}
           TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test }}
-        run: python3 rift_bot.py
+        run: python3 bot.py

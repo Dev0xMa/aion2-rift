@@ -1,16 +1,14 @@
-# Aion 2 Rift Uyarıcı
+# Aion 2 Bildirim Botu
 
-Her Uzay-Zaman Yarığı için Discord'a 4 bildirim gönderir:
+Discord'a zamanlı Aion 2 hatırlatmaları gönderir (rift, haftalık sıfırlama vb.).
 
-| Zaman | Bildirim |
-|---|---|
-| R-10 dk | Rift 10 dk sonra açılıyor |
-| R-5 dk | Rift 5 dk sonra açılıyor |
-| R | Rift açıldı, girişe son 10 dk |
-| R+5 dk | Girişin kapanmasına son 5 dk |
+## Yeni hatırlatma eklemek
+Sadece `etkinlikler.yaml` dosyasına yeni bir blok ekle ve kaydet. Açıklamalar dosyanın başında.
 
-Rift saatleri (TR): 00, 03, 06, 09, 12, 15, 18, 21
+## Nasıl çalışıyor
+- cron-job.org her 5 dakikada bir bu workflow'u tetikler.
+- Bot o anın 5 dk sonrasındaki pencereye düşen bildirimleri tam saatinde gönderir.
 
 Secrets: `DISCORD_WEBHOOK`, `DISCORD_ROLE_ID`
 
-Test: Actions → Aion 2 Rift Uyarici → Run workflow (test işaretli).
+Test: Actions → Aion 2 Bildirim Botu → Run workflow (test işaretli).
