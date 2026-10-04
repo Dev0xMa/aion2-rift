@@ -1,0 +1,49 @@
+name: Aion 2 Rift Uyarici
+
+on:
+  schedule:
+    # Rift'ler UTC 00,03,06,...,21'de (TR 03,06,...,00) aciliyor.
+    - cron: "45 2-23/3 * * *"   # ~15 dk once uyari
+    - cron: "0 */3 * * *"       # acilis mesaji
+  workflow_dispatch:            # Actions sekmesinden elle test icin
+
+jobs:
+  uyari:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord'a mesaj gonder
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+          ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}
+          TETIK: ${{ github.event.schedule || 'test' }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, urllib.request
+          from datetime import datetime, timedelta, timezone
+
+          tr = timezone(timedelta(hours=3))
+          simdi = datetime.now(timezone.utc)
+          tetik = os.environ["TETIK"]
+          role = os.environ.get("ROLE_ID", "").strip()
+
+          if tetik.startswith("45"):
+              rift = (simdi + timedelta(minutes=30)).replace(minute=0, second=0, microsecond=0)
+              mesaj = f"⏳ **Uzay-Zaman Yarığı {rift.astimezone(tr):%H:%M}'de açılıyor!** Hazırlanın."
+          elif tetik == "test":
+              mesaj = "✅ Rift uyarıcı test mesajı, sistem çalışıyor."
+          else:
+              mesaj = "🌀 **Rift açıldı!** Portal ~10 dk açık kalır, acele edin."
+
+          veri = {
+              "username": "Rift Bekçisi",
+              "content": f"<@&{role}> {mesaj}" if role else mesaj,
+              "allowed_mentions": {"roles": [role]} if role else {"parse": []},
+          }
+          istek = urllib.request.Request(
+              os.environ["WEBHOOK_URL"],
+              data=json.dumps(veri).encode("utf-8"),
+              headers={"Content-Type": "application/json", "User-Agent": "Aion2RiftBot"},
+          )
+          urllib.request.urlopen(istek, timeout=15)
+          print("Gonderildi:", mesaj)
+          EOF
