@@ -79,6 +79,10 @@ def main():
     kapanis = (rift + timedelta(minutes=PORTAL_DK)).astimezone(TR).strftime("%H:%M")
     print(f"Hedef rift: {saat} TR")
 
+    if not TEST and rift - simdi > timedelta(minutes=40):
+        print("Rift'e 40 dk'dan fazla var, çıkılıyor (erken tetikleme).")
+        return
+
     for fark, renk, baslik, aciklama in ADIMLAR:
         metin = aciklama.format(saat=saat, kapanis=kapanis)
         if TEST:

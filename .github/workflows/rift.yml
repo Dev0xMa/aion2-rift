@@ -1,10 +1,9 @@
 name: Aion 2 Rift Uyarici
 
 on:
-  schedule:
-    # Rift'ler UTC 00,03,...,21'de aciliyor. Is ~25 dk once baslar,
-    # bildirimleri (R-10, R-5, R, R+5) tam saatinde kendisi atar.
-    - cron: "35 2-23/3 * * *"
+  # Zamanlama cron-job.org'dan geliyor: TR 23,02,05,...,20 saatlerinde :35'te
+  # bu workflow'u API ile tetikler. Is bildirimleri (R-10, R-5, R, R+5)
+  # tam saatinde kendisi atar.
   workflow_dispatch:
     inputs:
       test:
