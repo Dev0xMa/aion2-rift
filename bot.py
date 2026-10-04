@@ -24,7 +24,8 @@ SLOT = timedelta(minutes=5)
 ONDEN = timedelta(minutes=5)
 GUNLER = ["pzt", "sal", "car", "per", "cum", "cmt", "paz"]
 
-SECRETS = json.loads(os.environ.get("SECRETS_JSON") or "{}")
+# Secret adlari workflow'da env olarak verilir (rol: DISCORD_ROLE_ID gibi).
+SECRETS = {k: v for k, v in os.environ.items() if k.startswith("DISCORD_")}
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL") or SECRETS.get("DISCORD_WEBHOOK", "")
 TEST = os.environ.get("TEST", "false").lower() == "true"
 

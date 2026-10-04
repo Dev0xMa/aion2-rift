@@ -23,7 +23,8 @@ jobs:
       - run: pip install --quiet pyyaml
       - name: Bildirimleri gonder
         env:
-          SECRETS_JSON: ${{ toJSON(secrets) }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}
           GITHUB_TOKEN: ${{ github.token }}
           TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test }}
         run: python3 bot.py
