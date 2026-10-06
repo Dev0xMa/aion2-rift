@@ -47,7 +47,7 @@ etkinlikler:
   # İkisi tek mesajda bildiriliyor (kanal spam olmasın diye).
   # Konumlar Asmodian tarafı içindir.
   - ad: world-boss
-    aktif: true
+    aktif: false        # Saatler sabit değil, takip sistemi gelene kadar kapalı
     saatler: ["04:00", "16:00"]
     sure_dk: 4          # {bitis} = Lagta'nın çıkış saati
     rol: DISCORD_ROLE_ID
