@@ -42,6 +42,45 @@ etkinlikler:
         baslik: "🚨 RIFT GİRİŞİ 5 DAKİKA SONRA KAPANIYOR"
         aciklama: "Son şans! Giriş **{bitis}**'te kapanıyor."
 
+  # ── World Boss'lar (12 saatte bir) ──
+  # Saatler oyundaki "Time Left" sayacından hesaplandı (6 Ekim 2026).
+  # Kayma olursa sadece saatleri güncelle.
+  - ad: wb-gartua
+    aktif: true
+    saatler: ["04:00", "16:00"]
+    rol: DISCORD_ROLE_ID
+    bildirimler:
+      - fark: -10
+        renk: "#F1C40F"
+        baslik: "🐉 IMMORTAL GARTUA 10 DAKİKA SONRA ÇIKIYOR"
+        aciklama: "World Boss **{saat}**'te doğuyor. Toplanın!"
+      - fark: -5
+        renk: "#E67E22"
+        baslik: "⚠️ IMMORTAL GARTUA 5 DAKİKA SONRA ÇIKIYOR"
+        aciklama: "World Boss **{saat}**'te doğuyor. Yerinizi alın!"
+      - fark: 0
+        renk: "#E74C3C"
+        baslik: "🔥 IMMORTAL GARTUA ÇIKTI!"
+        aciklama: "World Boss sahada, saldırın!"
+
+  - ad: wb-lagta
+    aktif: true
+    saatler: ["04:04", "16:04"]
+    rol: DISCORD_ROLE_ID
+    bildirimler:
+      - fark: -10
+        renk: "#F1C40F"
+        baslik: "🐉 HIGH COMMANDER LAGTA 10 DAKİKA SONRA ÇIKIYOR"
+        aciklama: "World Boss **{saat}**'te doğuyor. Toplanın!"
+      - fark: -5
+        renk: "#E67E22"
+        baslik: "⚠️ HIGH COMMANDER LAGTA 5 DAKİKA SONRA ÇIKIYOR"
+        aciklama: "World Boss **{saat}**'te doğuyor. Yerinizi alın!"
+      - fark: 0
+        renk: "#E74C3C"
+        baslik: "🔥 HIGH COMMANDER LAGTA ÇIKTI!"
+        aciklama: "World Boss sahada, saldırın!"
+
   # ── Örnek: haftalık sıfırlama hatırlatması (aktif: true yapınca çalışır) ──
   - ad: haftalik-sifirlama
     aktif: false
