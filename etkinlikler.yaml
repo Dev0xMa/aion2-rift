@@ -45,28 +45,37 @@ etkinlikler:
   # ── World Boss'lar: Immortal Gartua + High Commander Lagta ──
   # Sabit saat, 12 saatte bir. Lagta, Gartua'dan ~4 dk sonra çıkıyor.
   # İkisi tek mesajda bildiriliyor (kanal spam olmasın diye).
+  # Konumlar Asmodian tarafı içindir.
   - ad: world-boss
     aktif: true
     saatler: ["04:00", "16:00"]
     sure_dk: 4          # {bitis} = Lagta'nın çıkış saati
     rol: DISCORD_ROLE_ID
+    # "resimli: true" olan bildirimlerde harita resimleri de gönderilir
+    resimler:
+      - baslik: "📍 Immortal Gartua · Immortal Isle"
+        dosya: img/gartua.png
+      - baslik: "📍 High Commander Lagta · Lagta Fortress"
+        dosya: img/lagta.png
     bildirimler:
       - fark: -60
         renk: "#3498DB"
+        resimli: true
         baslik: "🐉 WORLD BOSS'LARA 1 SAAT VAR"
-        aciklama: "**Immortal Gartua** {saat}\n**High Commander Lagta** {bitis}\nPlanınızı yapın."
+        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nPlanınızı yapın."
       - fark: -30
         renk: "#F1C40F"
         baslik: "🐉 WORLD BOSS'LARA 30 DAKİKA VAR"
-        aciklama: "**Immortal Gartua** {saat}\n**High Commander Lagta** {bitis}\nHazırlanmaya başlayın."
+        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nHazırlanmaya başlayın."
       - fark: -10
         renk: "#E67E22"
+        resimli: true
         baslik: "⚠️ WORLD BOSS'LARA 10 DAKİKA VAR"
-        aciklama: "**Immortal Gartua** {saat}\n**High Commander Lagta** {bitis}\nBölgeye gidin, toplanın!"
+        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nBölgeye gidin, toplanın!"
       - fark: -5
         renk: "#E74C3C"
         baslik: "🚨 WORLD BOSS'LARA 5 DAKİKA VAR"
-        aciklama: "**Immortal Gartua** {saat}\n**High Commander Lagta** {bitis}\nYerinizi alın!"
+        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nYerinizi alın!"
 
   # ── Örnek: haftalık sıfırlama hatırlatması (aktif: true yapınca çalışır) ──
   - ad: haftalik-sifirlama

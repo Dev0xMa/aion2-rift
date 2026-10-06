@@ -63,11 +63,22 @@ def renk(hex_):
     return int(str(hex_).lstrip("#"), 16)
 
 
-def gonder(baslik, aciklama, renk_, rol):
+REPO = os.environ.get("GITHUB_REPOSITORY", "Dev0xMa/aion2-rift")
+
+
+def resim_url(dosya):
+    return f"https://raw.githubusercontent.com/{REPO}/main/{dosya}"
+
+
+def gonder(baslik, aciklama, renk_, rol, resimler=()):
+    embeds = [{"description": aciklama, "color": renk_}]
+    for r in resimler:
+        embeds.append({"title": r.get("baslik", ""), "color": renk_,
+                       "image": {"url": resim_url(r["dosya"])}})
     veri = {
         "username": "Rift Bekçisi",
         "content": (f"<@&{rol}>\n" if rol else "") + f"# {baslik}",
-        "embeds": [{"description": aciklama, "color": renk_}],
+        "embeds": embeds,
         "allowed_mentions": {"roles": [rol]} if rol else {"parse": []},
     }
     istek = urllib.request.Request(
@@ -84,7 +95,8 @@ def gonder(baslik, aciklama, renk_, rol):
 
 
 def bildirimleri_hesapla(etkinlikler, bas, son):
-    """[bas, son) aralığına düşen bildirimler: (zaman, baslik, aciklama, renk, rol)."""
+    """[bas, son) aralığına düşen bildirimler:
+    (zaman, baslik, aciklama, renk, rol, resimler)."""
     sonuc = []
     gun0 = bas.astimezone(TR).date()
     for e in etkinlikler:
@@ -105,8 +117,9 @@ def bildirimleri_hesapla(etkinlikler, bas, son):
                         metin = b["aciklama"].format(
                             saat=olay.strftime("%H:%M"),
                             bitis=(olay + sure).strftime("%H:%M"))
+                        resimler = e.get("resimler", []) if b.get("resimli") else []
                         sonuc.append((zaman, b["baslik"], metin,
-                                      renk(b["renk"]), rol_id(e.get("rol"))))
+                                      renk(b["renk"]), rol_id(e.get("rol")), resimler))
     return sorted(sonuc, key=lambda x: x[0])
 
 
@@ -123,7 +136,8 @@ def main():
                 continue
             b = e["bildirimler"][0]
             metin = b["aciklama"].format(saat="00:00", bitis="00:00")
-            gonder(f"[TEST] {b['baslik']}", metin, renk(b["renk"]), rol_id(e.get("rol")))
+            gonder(f"[TEST] {b['baslik']}", metin, renk(b["renk"]), rol_id(e.get("rol")),
+                   e.get("resimler", []))
         return
 
     slot = slota_yuvarla(tetiklenme_zamani())
@@ -136,11 +150,11 @@ def main():
         print("Bu pencerede bildirim yok.")
         return
 
-    for zaman, baslik, metin, renk_, rol in plan:
+    for zaman, baslik, metin, renk_, rol, resimler in plan:
         kalan = (zaman - datetime.now(timezone.utc)).total_seconds()
         if kalan > 0:
             time.sleep(kalan)
-        gonder(baslik, metin, renk_, rol)
+        gonder(baslik, metin, renk_, rol, resimler)
 
 
 if __name__ == "__main__":
