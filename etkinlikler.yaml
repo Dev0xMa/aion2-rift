@@ -47,7 +47,7 @@ etkinlikler:
   # İkisi tek mesajda bildiriliyor (kanal spam olmasın diye).
   # Konumlar Asmodian tarafı içindir.
   - ad: world-boss
-    aktif: false        # Saatler sabit değil, takip sistemi gelene kadar kapalı
+    aktif: true         # Saatler tahmini (genelde 04:00 ve 16:00 civarı kesiliyor)
     saatler: ["04:00", "16:00"]
     sure_dk: 4          # {bitis} = Lagta'nın çıkış saati
     rol: DISCORD_ROLE_ID
@@ -62,20 +62,20 @@ etkinlikler:
         renk: "#3498DB"
         resimli: true
         baslik: "🐉 WORLD BOSS'LARA 1 SAAT VAR"
-        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nPlanınızı yapın."
+        aciklama: "**Immortal Gartua** ~{saat} · 📍 Immortal Isle\n**High Commander Lagta** ~{bitis} · 📍 Lagta Fortress\nSaatler tahminidir, oyundaki sayaca da bakın."
       - fark: -30
         renk: "#F1C40F"
         baslik: "🐉 WORLD BOSS'LARA 30 DAKİKA VAR"
-        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nHazırlanmaya başlayın."
+        aciklama: "**Immortal Gartua** ~{saat} · 📍 Immortal Isle\n**High Commander Lagta** ~{bitis} · 📍 Lagta Fortress\nHazırlanmaya başlayın."
       - fark: -10
         renk: "#E67E22"
         resimli: true
         baslik: "⚠️ WORLD BOSS'LARA 10 DAKİKA VAR"
-        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nBölgeye gidin, toplanın!"
+        aciklama: "**Immortal Gartua** ~{saat} · 📍 Immortal Isle\n**High Commander Lagta** ~{bitis} · 📍 Lagta Fortress\nBölgeye gidin, toplanın!"
       - fark: -5
         renk: "#E74C3C"
         baslik: "🚨 WORLD BOSS'LARA 5 DAKİKA VAR"
-        aciklama: "**Immortal Gartua** {saat} · 📍 Immortal Isle\n**High Commander Lagta** {bitis} · 📍 Lagta Fortress\nYerinizi alın!"
+        aciklama: "**Immortal Gartua** ~{saat} · 📍 Immortal Isle\n**High Commander Lagta** ~{bitis} · 📍 Lagta Fortress\nYerinizi alın!"
 
   # ── Örnek: haftalık sıfırlama hatırlatması (aktif: true yapınca çalışır) ──
   - ad: haftalik-sifirlama
