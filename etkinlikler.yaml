@@ -47,7 +47,7 @@ etkinlikler:
   # İkisi tek mesajda bildiriliyor (kanal spam olmasın diye).
   # Konumlar Asmodian tarafı içindir.
   - ad: world-boss
-    aktif: true         # Saatler tahmini (genelde 04:00 ve 16:00 civarı kesiliyor)
+    aktif: false        # Kapalı: saatler değişti (10 Ekim 2026). Yeni saatlerle açılabilir.
     saatler: ["04:00", "16:00"]
     sure_dk: 4          # {bitis} = Lagta'nın çıkış saati
     rol: DISCORD_ROLE_ID
