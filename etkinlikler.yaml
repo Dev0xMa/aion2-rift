@@ -21,7 +21,9 @@ etkinlikler:
 
   - ad: rift
     aktif: true
-    saatler: ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"]
+    # Avrupa 25 Ekim 2026'da saat geri aldı (CEST → CET), Türkiye saati sabit kaldığı için
+    # rift saatleri Türkiye saatiyle 1 saat ileri kaydı.
+    saatler: ["01:00", "04:00", "07:00", "10:00", "13:00", "16:00", "19:00", "22:00"]
     sure_dk: 10
     rol: DISCORD_ROLE_ID
     bildirimler:
